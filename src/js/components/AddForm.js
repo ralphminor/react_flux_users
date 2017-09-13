@@ -42,12 +42,15 @@ export default class AddForm extends React.Component {
 				<h3>Add User</h3>
 				<form onSubmit={this.handleSubmit}>
 					<div className="form-group">
+						<label className="input-labels">First Name</label>
 						<input value={this.state.firstName} name="firstName" type="text" ref="firstName" className="form-control" placeholder="Add First Name..." onChange={this.handleInputChange}/>
 					</div>
 					<div className="form-group">
+						<label className="input-labels">Last Name</label>
 						<input value={this.state.lastName} name="lastName" type="text" ref="lastName" className="form-control" placeholder="Add Last Name..." onChange={this.handleInputChange}/>
 					</div>
 					<div className="form-group">
+						<label className="input-labels">Address</label>
 						<input value={this.state.address} name="address" type="text" ref="address" className="form-control" placeholder="Add Address..." onChange={this.handleInputChange}/>
 					</div>
 					<button type="submit" className="btn btn-primary">Submit</button>

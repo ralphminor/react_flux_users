@@ -36,12 +36,15 @@ export default class EditForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
 					<div className="form-group">
+						<label className="input-labels">First Name</label>
 						<input value={this.state.firstName} name="firstName" type="text" onChange={this.handleInputChange} className="form-control" placeholder="Add Name..." />
 					</div>
 					<div className="form-group">
+						<label className="input-labels">Last Name</label>
 						<input value={this.state.lastName} name="lastName" type="text" onChange={this.handleInputChange} className="form-control" placeholder="Add Phone..." />
 					</div>
 					<div className="form-group">
+						<label className="input-labels">Address</label>
 						<input value={this.state.address} name="address" type="text" onChange={this.handleInputChange} className="form-control" placeholder="Add Email..." />
 					</div>
 					<button type="submit" className="btn btn-primary">Submit</button>

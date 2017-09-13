@@ -9,6 +9,7 @@ export default class UserList extends React.Component {
 	}
 
 	render() {
+		this.props.users.sort(function(a, b) { return a.id - b.id});
 		return(
 			<div>
 				<h3>Users</h3>
