@@ -18,19 +18,22 @@ export default class AddForm extends React.Component {
 	}
 
   handleSubmit(e) {
-    e.preventDefault();
-    let u = this.props.users;
-    let maxId = Math.max.apply(Math, u.map(function(o){ return o.id }));
-    var new_id = maxId + 1;
+		if (this.state.firstName && this.state.lastName && this.state.address) {
+			e.preventDefault();
+			let u = this.props.users;
+			let maxId = Math.max.apply(Math, u.map(function(o){ return o.id }));
+			var new_id = maxId + 1;
 
-		var user = {
-      id: new_id,
-			firstName: this.refs.firstName.value.trim(),
-			lastName: this.refs.lastName.value.trim(),
-			address: this.refs.address.value.trim()
+			var user = {
+				id: new_id,
+				firstName: this.refs.firstName.value.trim(),
+				lastName: this.refs.lastName.value.trim(),
+				address: this.refs.address.value.trim()
+			}
+
+			AppActions.saveUser(user);
+			this.setState({ id: '', firstName: '', lastName: '', address: ''})
 		}
-
-    AppActions.saveUser(user);
 	}
 
 	render() {
