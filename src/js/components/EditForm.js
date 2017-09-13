@@ -3,26 +3,27 @@ import * as AppActions from '../actions/AppActions';
 import AppStore from '../stores/AppStore';
 
 export default class EditForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.state = { id: this.props.userToEdit.id, firstName: this.props.userToEdit.firstName, lastName: this.props.userToEdit.lastName, address: this.props.userToEdit.address};
   }
 
-  handleChange(fieldName, event) {
-    var newState = event.target.value;
-    var selected = this.state;
-    selected.name = newState;
-    this.setState({selected: selected});
-  }
+  handleInputChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value,
+    });
+	}
 
   handleSubmit(e) {
     e.preventDefault();
 
     var user = {
-      id: this.props.userToEdit.id,
-      firstName: this.refs.firstName.value.trim(),
-      lastName: this.refs.lastName.value.trim(),
-      address: this.refs.address.value.trim()
+      id: this.state.id,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      address: this.state.address
     }
 
     AppActions.updateUser(user);
@@ -35,13 +36,13 @@ export default class EditForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
 					<div className="form-group">
-						<input type="text" ref="firstName" onChange={this.handleChange.bind(this, 'firstName')} value={this.props.userToEdit.firstName} className="form-control" placeholder="Add Name..." />
+						<input value={this.state.firstName} name="firstName" type="text" onChange={this.handleInputChange} className="form-control" placeholder="Add Name..." />
 					</div>
 					<div className="form-group">
-						<input type="text" ref="lastName" onChange={this.handleChange.bind(this, 'lastName')} value={this.props.userToEdit.lastName} className="form-control" placeholder="Add Phone..." />
+						<input value={this.state.lastName} name="lastName" type="text" onChange={this.handleInputChange} className="form-control" placeholder="Add Phone..." />
 					</div>
 					<div className="form-group">
-						<input type="text" ref="address" className="form-control" onChange={this.handleChange.bind(this, 'address')} value={this.props.userToEdit.address} placeholder="Add Email..." />
+						<input value={this.state.address} name="address" type="text" onChange={this.handleInputChange} className="form-control" placeholder="Add Email..." />
 					</div>
 					<button type="submit" className="btn btn-primary">Submit</button>
 				</form>

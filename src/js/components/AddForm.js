@@ -3,10 +3,19 @@ import * as AppActions from '../actions/AppActions';
 import AppStore from '../stores/AppStore';
 
 export default class AddForm extends React.Component {
-  constructor() {
-    super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+
+  constructor(props) {
+		super(props);
+		this.state = { id: '', firstName: '', lastName: '', address: ''};
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+	}
+
+	handleInputChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value,
+    });
+	}
 
   handleSubmit(e) {
     e.preventDefault();
@@ -30,13 +39,13 @@ export default class AddForm extends React.Component {
 				<h3>Add User</h3>
 				<form onSubmit={this.handleSubmit}>
 					<div className="form-group">
-						<input type="text" ref="firstName" className="form-control" placeholder="Add First Name..." />
+						<input value={this.state.firstName} name="firstName" type="text" ref="firstName" className="form-control" placeholder="Add First Name..." onChange={this.handleInputChange}/>
 					</div>
 					<div className="form-group">
-						<input type="text" ref="lastName" className="form-control" placeholder="Add Last Name..." />
+						<input value={this.state.lastName} name="lastName" type="text" ref="lastName" className="form-control" placeholder="Add Last Name..." onChange={this.handleInputChange}/>
 					</div>
 					<div className="form-group">
-						<input type="text" ref="address" className="form-control" placeholder="Add Address..." />
+						<input value={this.state.address} name="address" type="text" ref="address" className="form-control" placeholder="Add Address..." onChange={this.handleInputChange}/>
 					</div>
 					<button type="submit" className="btn btn-primary">Submit</button>
 				</form>
